@@ -40,7 +40,7 @@
     }
 
 
-    function SendPost(url, items)
+    function SendPost(url:string, items:object)
     {
         var iframe = document.createElement("iframe");
         var uniqueString = "iframeToPost";
@@ -101,8 +101,8 @@
         }
         var itemNode;
         var selectElement:Node = selection.getRangeAt(0).startContainer;
-        while ( (selectElement.nodeName != "DD") & (selectElement.nodeName != "DT") ) {
-            selectElement = selectElement.parentElement
+        while ( (selectElement.nodeName != "DD") && (selectElement.nodeName != "DT") ) {
+            selectElement = selectElement.parentElement!;
         }
         if (selectElement.nodeName === "DT") { itemNode = selectElement.nextElementSibling }
         else if (selectElement.nodeName === "DD") { itemNode = selectElement }

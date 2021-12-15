@@ -1,3 +1,4 @@
+"use strict";
 // ==UserScript==
 // @name         PDF Invert Color
 // @namespace    http://tampermonkey.net/
@@ -9,69 +10,25 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=aps.org
 // @grant        none
 // ==/UserScript==
-
-(function() {
+(function () {
     'use strict';
-    function invertColors() {
-      if(document.getElementById("cover") == null) {
-        var cover = document.createElement("div");
-
-        cover.setAttribute("style", 
-        `
-        position: fixed;
-        pointer-events: none;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: white;
-        mix-blend-mode: difference;
-        z-index: 1;
-        `);
-        cover.id = "cover"
-        document.body.appendChild(cover);
-      }
-      else {
-        document.getElementById("cover").remove()
-      }
+    function InvertColors() {
+        if (document.getElementById("cover") == null) {
+            var cover = document.createElement("div");
+            cover.setAttribute("style", "\n        position: fixed;\n        pointer-events: none;\n        top: 0;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: white;\n        mix-blend-mode: difference;\n        z-index: 1;\n        ");
+            cover.id = "cover";
+            document.body.appendChild(cover);
+        }
+        else {
+            document.getElementById("cover").remove();
+        }
     }
-
-    chrome.runtime.onInstalled.addListener(function () {
-      chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-        chrome.declarativeContent.onPageChanged.addRules([{
-          conditions: [new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { pathSuffix: 'pdf' },
-          })],
-          actions: [new chrome.declarativeContent.ShowPageAction()]
-        }]);
-      });
-    });
-
-    chrome.pageAction.onClicked.addListener(function (tab) {
-
-      let toggleScript = `if(document.getElementById(\"cover\") == null) {\n
-            var cover = document.createElement(\"div\");\n\n
-            cover.setAttribute(\"style\", \n    \n
-              position: fixed;\n
-              pointer-events: none;\n
-              top: 0;\n
-              left: 0;\n
-              width: 100vw;\n
-              height: 100vh;\n
-              background-color: white;\n
-              mix-blend-mode: difference;\n
-              z-index: 1;\n    );\n
-              cover.id = \"cover\"\n
-              document.body.appendChild(cover);\n 
-              }\n  else {\n
-              document.getElementById(\"cover\").remove()\n  }`;
-                                                              
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-          chrome.tabs.executeScript(
-            tabs[0].id,
-            { code: toggleScript});
-        });
-    })
-
-
+    var button = document.createElement("div");
+    var buttonHtml = "<div href='javascript:void(0)' target='_blank' id='buttonFun' style='cursor:pointer;z-index:98;display:block;width:30px;height:30px;line-height:30px;position:fixed;left:0;top:300px;text-align:center;overflow:visible'><img src='https://cdn.80note.com/vip.gif' height='55' ></div>";
+    button.innerHTML = buttonHtml;
+    document.body.appendChild(button);
+    var buttoner = document.getElementById("buttonFun");
+    if (buttoner != null) {
+        buttoner.onclick = InvertColors;
+    }
 })();

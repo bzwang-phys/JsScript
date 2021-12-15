@@ -3,7 +3,7 @@
 // @name         m3u8 Downloader
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @match        *video*
+// @match        https://.com/*
 // @match        https://www..com/*
 // @grant        none
 // ==/UserScript==

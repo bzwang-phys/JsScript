@@ -10,7 +10,7 @@
 
 (function() {
     var download = "<div href='javascript:void(0)' target='_blank' id='download' style='cursor:pointer;z-index:98;display:block;width:30px;height:30px;line-height:30px;position:fixed;left:0;top:300px;text-align:center;overflow:visible'><img src='https://cdn.80note.com/vip.gif' height='55' ></div>";
-    if (location.href.indexOf("s.bellesa.co/v/")!= -1)
+    if (location.href.indexOf("")!= -1)
     {
         var input = "<input id='video_name' type='text' style='z-index:1000;position:fixed;left:0;top:350px;width:90px;height:40px;background-color:red'> ";
         $("body").prepend(input);
@@ -39,7 +39,7 @@
             downloadUrl = videoTag.getAttribute("src");
             name = document.querySelector("span.curr_info").innerText;
         }
-        else if (url.indexOf("s.bellesa.co/v/")!= -1)
+        else if (url.indexOf("")!= -1)
         {
             
         };

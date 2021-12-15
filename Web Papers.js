@@ -90,7 +90,7 @@
         }
         var itemNode;
         var selectElement = selection.getRangeAt(0).startContainer;
-        while ((selectElement.nodeName != "DD") & (selectElement.nodeName != "DT")) {
+        while ((selectElement.nodeName != "DD") && (selectElement.nodeName != "DT")) {
             selectElement = selectElement.parentElement;
         }
         if (selectElement.nodeName === "DT") {
